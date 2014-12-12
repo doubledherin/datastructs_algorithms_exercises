@@ -51,3 +51,8 @@ class AndGate(BinaryGate):
             return 1
         else:
             return 0
+
+
+if __name__ == "__main__":
+    a = AndGate("Logic1")
+    print a.getOutput()
