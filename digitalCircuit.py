@@ -1,3 +1,5 @@
+import sys
+
 class LogicGate:
 
     def __init__(self,n):
@@ -128,10 +130,6 @@ class Connector:
         return self.togate
 
 
-
-
-
-
 if __name__ == "__main__":
     g1 = AndGate("G1")
     g2 = AndGate("G2")
@@ -140,4 +138,8 @@ if __name__ == "__main__":
     c1 = Connector(g1,g3)
     c2 = Connector(g2,g3)
     c3 = Connector(g3,g4)
-    print g4.getOutput()
+    main()
+    
+
+
+
