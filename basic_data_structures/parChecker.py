@@ -8,16 +8,24 @@ def parChecker(s):
     m = Stack()
 
     for char in s:
-        if char == "(":
+        if char in "([{":
             m.push(char)
         else:
             if m.isEmpty():
                 return False
             else:
-                m.pop()
+                top = m.pop()
+                if not match(top, char):
+                    return False
 
     return m.isEmpty()
 
-print parChecker("(()()())")   # True
-print parChecker("(()()()))")  # False
-print parChecker("(()()()")    # False
+def match(char1, char2):
+    openers = "([{"
+    closers = ")]}"
+    return openers.index(char1) == closers.index(char2)
+
+
+print parChecker("({[[]]})({})([])")   # True
+print parChecker("(({}])()()))")       # False
+print parChecker("(()()(]")            # False
