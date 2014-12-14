@@ -1,23 +1,23 @@
 class Deque():
 
     def __init__(self):
-        self.items[]
+        self.items = []
 
-    def addFront(item):
+    def addFront(self, item):
         self.items.append(item)
 
-    def addRear(item):
+    def addRear(self, item):
         self.items.insert(0, item)
         
-    def removeFront():
+    def removeFront(self):
         return self.items.pop()
 
-    def removeRear():
+    def removeRear(self):
         return self.items.pop(0)
 
-    def isEmpty():
+    def isEmpty(self):
         return self.items == []
 
-    def size():
+    def size(self):
         return len(self.items)
 
