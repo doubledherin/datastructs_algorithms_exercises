@@ -18,13 +18,13 @@ def convertToPostfix(tokenstring):
 
     tokenlist = list(tokenstring)
 
-    for item in tokenlist:
-        if item == ' ':
-            tokenlist.remove(item)
+
 
 
     for token in tokenlist:
-        if token in string.uppercase:
+        if token == ' ':
+            continue
+        elif token in string.uppercase:
             output.append(token)
 
         elif token == "(":
