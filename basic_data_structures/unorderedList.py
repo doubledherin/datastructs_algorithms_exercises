@@ -68,6 +68,7 @@ class UnorderedList:
     def insert(self, position, item):
         
         n = Node(item)
+        # print n.getData()
 
         current = self.head
         previous = None
@@ -77,8 +78,10 @@ class UnorderedList:
             current = current.getNext()
 
         if previous == None:
+            # print "hey"
             n.setNext(current)
             self.head = n
+            # print self.index('apple')
         else:
             n.setNext(current)
             previous.setNext(n)
@@ -99,7 +102,7 @@ class UnorderedList:
 
         return count
 
-    def pop(self, item):
+    def pop(self, pos=None):
 
         if self.isEmpty():
             return "Linked list is empty; nothing to pop."
@@ -107,18 +110,45 @@ class UnorderedList:
         current = self.head
         previous = None
 
+        if not pos:
 
-        while current.getNext() != None:
+            while current.getNext() != None:
 
-            previous = current
-            current = current.getNext()
+                previous = current
+                current = current.getNext()
 
-        
-        result = current.getData()
-        if previous != None:
-            previous.next = None
+            
+            result = current.getData()
 
-        return result
+            if previous != None:
+                previous.next = None
+            else:
+                current.setData = None
+                current.setNext = None
+
+
+            return result
+
+        else:
+
+            count = 0
+            while pos > count:
+
+                count += 1
+                previous = current
+                current = current.getNext()
+                print current.getData()
+
+            result = current.getData()
+            
+            if previous != None:
+                previous.setNext(current.getNext())
+            else:
+                current.setData = None
+                current.setNext = None
+
+            
+            return result
 
 if __name__ == '__main__':
     link1 = UnorderedList()
@@ -131,7 +161,8 @@ if __name__ == '__main__':
     link2.add("c")
     link1.append(link2)
     link1.insert(0, "apple")
-    print link1.pop()
+    # print link1.pop()
+    print link1.pop(pos=5)
 
 
 
