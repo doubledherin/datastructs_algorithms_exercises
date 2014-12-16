@@ -17,10 +17,10 @@ class UnorderedList:
 
         count = 0
 
-        n = self.head
+        current = self.head
 
-        while n:
-            n = n.getNext()
+        while current:
+            current = current.getNext()
             count +=1
 
         return count
@@ -28,13 +28,14 @@ class UnorderedList:
     def search(self, item):
 
         current = self.head
-
-        while current:
+        found = False
+        while current and not found:
             if current.getData() == item:
-                return True
-            current = current.getNext()
+                found = True
+            else:
+                current = current.getNext()
 
-        return False
+        return found
 
     def remove(self, item):
 
@@ -55,20 +56,22 @@ class UnorderedList:
         else:
             previous.setNext(current.getNext())
 
-    def append(self, linkedList):
-
-        current = linkedList.head
+    def append(self, item):
+        """
+        Adds a new item to the end of the list, making it the last item in the collection.
+        """
+        n = Node(item)
+        current = self.head
 
         while current.getNext() != None:
             current = current.getNext()
 
-        current.setNext(self.head)
-        self.head = linkedList.head
+        current.setNext(n)
 
     def insert(self, position, item):
         
         n = Node(item)
-        # print n.getData()
+
 
         current = self.head
         previous = None
@@ -78,13 +81,15 @@ class UnorderedList:
             current = current.getNext()
 
         if previous == None:
-            # print "hey"
+
             n.setNext(current)
             self.head = n
-            # print self.index('apple')
+
         else:
             n.setNext(current)
             previous.setNext(n)
+
+        return
 
     def index(self, item):
 
@@ -92,7 +97,7 @@ class UnorderedList:
         found = False
         current = self.head
 
-        while not found:
+        while not found and current.getNext():
             if current.getData() == item:
                 found = True
 
@@ -130,17 +135,15 @@ class UnorderedList:
             return result
 
         else:
-
             count = 0
             while pos > count:
 
-                count += 1
                 previous = current
                 current = current.getNext()
-                print current.getData()
-
+                count += 1
+                
             result = current.getData()
-            
+
             if previous != None:
                 previous.setNext(current.getNext())
             else:
@@ -153,16 +156,34 @@ class UnorderedList:
 if __name__ == '__main__':
     link1 = UnorderedList()
     link2 = UnorderedList()
+
     link1.add(1)
     link1.add(2)
     link1.add(3)
-    link2.add("a")
-    link2.add("b")
-    link2.add("c")
-    link1.append(link2)
-    link1.insert(0, "apple")
-    # print link1.pop()
-    print link1.pop(pos=5)
+    print link1.isEmpty()
+    print link2.isEmpty()
+
+    print link1.length()
+    print link2.length()
+    print link1.search(3)
+    print link2.search(3)
+    link1.remove(3)
+    print link1.search(3)
+    link1.append(3)
+    print link1.search(3)
+    link1.insert(1, "apple")
+    print link1.index("apple")
+    print link1.pop(2)
+    print link1.pop()
+
+
+
+
+
+
+
+
+
 
 
 
