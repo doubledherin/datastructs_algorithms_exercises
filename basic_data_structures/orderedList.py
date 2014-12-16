@@ -7,33 +7,27 @@ class OrderedList:
         self.head = None
 
     def add(self, item):
-        n = Node(item)
-        
-        if self.isEmpty():
-            self.head = n
 
-        # if the added item is less than anything in the list
-        elif self.head >= item:
+        n = Node(item)
+
+        current = self.head
+        
+        previous = None
+        stop = False
+        
+        while current != None and not stop:
+            if current.getData() > item:
+                stop = True
+            else:
+                previous = current
+                current = current.getNext()
+
+        if previous == None:
             n.setNext(self.head)
             self.head = n
-
         else:
-            current = self.head
-            previous = None
-
-            while current:
-
-                # if the added item is greater than anything in the list
-                if current.getNext() == None:
-                    current.setNext(n)
-                    break
-
-                elif current.getData() <= item and current.getNext() >= item:
-                    n.setNext(current.getNext())
-                    current.setNext(n)
-                else:
-                    current = current.getNext()
-
+            n.setNext(current)
+            previous.setNext(n)
 
 
     def remove(self, item):
@@ -61,7 +55,11 @@ class OrderedList:
         while current:
             if current.getData() == item:
                 return True
+            elif current.getData() > item:
+ 
+                return False
             current = current.getNext()
+
         return False
 
     def isEmpty(self):
@@ -141,16 +139,20 @@ if __name__ == '__main__':
     link1 = OrderedList()
     link1.add(57)
     link1.add(5)
-    print link1.index(5) # 1
-    print link1.index(57)# 0
-    print link1.pop(1) #5
-    print link1.search(57) # True
+    print link1.index(5) # 0
+    print link1.index(57)# 1
+    print link1.pop(1) #57
+    print link1.search(57) # False
     link1.add(6)
-    link1.remove(6)
-    print link1.length() # 1
-    print link1.isEmpty() # False
-    print link1.pop() #57
-    print link1.isEmpty() # True
+    link1.add(90)
+    print link1.search(0) # False
+    print link1.search(57) # False
+    print link1.search(6) # True
+    print link1.search(58) # False
+    print link1.search(7) # False
+
+
+
 
 
 
