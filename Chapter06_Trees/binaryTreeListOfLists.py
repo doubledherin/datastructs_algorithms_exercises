@@ -17,4 +17,4 @@ def insertRight(root, newBranch):
         root.insert(2, [newBranch, [], poppedRightChild])
     else:
         root.insert(2, [newBranch, [], []])
-    return root
+    return root 
