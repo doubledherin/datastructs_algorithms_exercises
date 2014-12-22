@@ -1,6 +1,12 @@
 from __future__ import division
+import operator
 from binaryTreeNodesAndReferences import BinaryTree 
 from stack import Stack 
+
+add = operator.add
+sub = operator.sub
+mul = operator.mul
+div = operator.truediv
 
 def parseTree(expression):
     """
@@ -28,13 +34,13 @@ def parseTree(expression):
 
     for token in expressionList:
         if token == "(":
-            currentTree.insertLeftChild('')
+            currentTree.insertLeft('')
             parentStack.push(currentTree)
             currentTree = currentTree.getLeftChild()
 
         elif token in "*/+-":
             currentTree.setRootValue(token)
-            currentTree.insertRightChild('')
+            currentTree.insertRight('')
             parentStack.push(currentTree)
             currentTree = currentTree.getRightChild()
 
@@ -50,5 +56,26 @@ def parseTree(expression):
 
     return parseTree
 
+
+def evaluate(parseTree):
+
+    # create dict of operators
+    # key = string version, val = python's built-in operator equivalent
+    opers = {'+': add, '-': sub, '*': mul, '/': div}
+    leftChild = parseTree.getLeftChild()
+    rightChild = parseTree.getRightChild()
+
+    # not at leaf nodes yet
+    if leftChild and rightChild:
+        operator = opers[parseTree.getRootValue()]
+        return operator(evaluate(leftChild), evaluate(rightChild))
+
+    # at leaf nodes now
+    else:
+        return parseTree.getRootValue()
+
+if __name__ == '__main__':
+    pTree = parseTree('(3 + (4 * 5))')
+    print evaluate(pTree) #23
 
 

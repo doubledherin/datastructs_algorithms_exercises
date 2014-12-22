@@ -30,7 +30,7 @@ class BinaryTree:
     def setRootValue(self, value):
         self.root = value
 
-    def getRootValue(self, value):
+    def getRootValue(self):
         return self.root
 
         
