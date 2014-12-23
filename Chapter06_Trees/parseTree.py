@@ -1,6 +1,6 @@
 from __future__ import division
 import operator
-from binaryTreeNodesAndReferences import BinaryTree 
+from binaryTreeNodesAndReferences import BinaryTree, preorder, postorder 
 from stack import Stack 
 
 add = operator.add
@@ -77,5 +77,6 @@ def evaluate(parseTree):
 if __name__ == '__main__':
     pTree = parseTree('(3 + (4 * 5))')
     print evaluate(pTree) #23
+
 
 

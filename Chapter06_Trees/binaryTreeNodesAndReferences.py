@@ -33,7 +33,36 @@ class BinaryTree:
     def getRootValue(self):
         return self.root
 
-        
+def preorder(tree):
+    if tree:
+        print tree.getRootValue()
+        preorder(tree.getLeftChild)
+        preorder(tree.getRightChild)
+
+def postorder(tree):
+    if tree:
+        postorder(tree.getLeftChild)
+        postorder(tree.getRightChild)
+        print tree.getRootValue()
+
+def inorder(tree):
+    if tree:
+        inorder(tree.getLeftChild)
+        print tree.getRootValue()
+        inorder(tree.getRightChild)
+
+if __name__ == '__main__':
+    bt = BinaryTree(5)
+    print bt
+    bt.insertRight(6)
+    bt.insertLeft(10)
+    bt.insertRight(60)
+    bt.insertLeft(100)
+    bt.insertRight(65)
+    bt.insertLeft(104)
+    print bt.getRootValue()
+    # preorder(bt)
+    postorder(bt)
 
 
 
