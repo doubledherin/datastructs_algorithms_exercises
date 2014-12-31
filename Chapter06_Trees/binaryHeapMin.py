@@ -54,6 +54,7 @@ class BinaryHeapMin():
     def isEmpty(self):
         return self.currentsize == 0
 
+
     def size(self):
         return self.currentsize
 
@@ -72,6 +73,9 @@ class BinaryHeapMin():
 if __name__ == '__main__':
     bhm = BinaryHeapMin()
     bhm.buildHeap([67,9,3,7,4,15,46])
+
+    for i in range(1,bhm.size()+1):
+        print "i: ", i, "; contents: ", bhm.heapList[i]
     print bhm.isEmpty() # False
     print bhm.findMin() #3
     print bhm.size() #7
@@ -81,12 +85,7 @@ if __name__ == '__main__':
     bhm.delMin()
     print bhm.findMin() #3
     print bhm.size() #7
-    min15 = bhm.getIndexMinChild(15)
-    print min15 #7
-    for i in range(len(bhm.heapList)):
-        print i, bhm.heapList[i]
-
-    print bhm.getIndexMinChild(5) #7
+    print bhm.getIndexMinChild(3) #7
         
 
 
